@@ -1,0 +1,22 @@
+services:
+  app:
+    build: .
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - ..:/app
+    depends_on:
+      - mysql
+  mysql:
+      image: mysql:8.0
+      container_name: nestjs-graphql-prisma-mysql-example-mysql
+      volumes:
+        - ../mysql-data:/var/lib/mysql
+      ports:
+        - 3306:3306
+      environment:
+        MYSQL_ROOT_PASSWORD: test
+        MYSQL_DATABASE: test
+        MYSQL_USER: test
+        MYSQL_PASSWORD: test
