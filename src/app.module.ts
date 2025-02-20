@@ -7,6 +7,8 @@ import { PrismaService } from './prisma/prisma.service';
 import { OrdersResolver } from './graphql/orders/orders.resolver';
 import { CustomersResolver } from './graphql/customers/customers.resolver';
 import { CustomerDataLoaderService } from './graphql/orders/customer-data-loader/customer-data-loader.service';
+import { InventoriesResolver } from './graphql/inventories/inventories.resolver';
+import { InventoryDataLoaderService } from './graphql/orders/inventory-data-loader/inventory-data-loader.service';
 
 @Module({
   imports: [
@@ -16,6 +18,14 @@ import { CustomerDataLoaderService } from './graphql/orders/customer-data-loader
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, PrismaService, OrdersResolver, CustomersResolver, CustomerDataLoaderService],
+  providers: [
+    AppService,
+    PrismaService,
+    OrdersResolver,
+    CustomersResolver,
+    CustomerDataLoaderService,
+    InventoriesResolver,
+    InventoryDataLoaderService,
+  ],
 })
 export class AppModule {}

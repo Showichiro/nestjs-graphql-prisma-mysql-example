@@ -73,7 +73,7 @@ const main = async () => {
     await tx.order.createMany({
       data: Array.from({ length: 200 }, (_, index) => ({
         customerId: [taro.id, hanako.id, tanaka.id][index % 3],
-        description: '品代',
+        description: '通常購入',
         inventoryId: [
           coffee.id,
           tea.id,

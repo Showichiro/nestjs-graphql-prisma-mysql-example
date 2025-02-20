@@ -8,12 +8,15 @@ import { findManyCursorConnection } from 'src/common/find-many-cursor-connection
 import { Customer } from '../customers/customer/customer';
 import { Order as PrismaOrder } from '@prisma/client';
 import { CustomerDataLoaderService } from './customer-data-loader/customer-data-loader.service';
+import { Inventory } from '../inventories/inventory/inventory';
+import { InventoryDataLoaderService } from './inventory-data-loader/inventory-data-loader.service';
 
 @Resolver(() => Order)
 export class OrdersResolver {
   constructor(
     private prisma: PrismaService,
     private customerDataLoader: CustomerDataLoaderService,
+    private inventoryDataLoader: InventoryDataLoaderService,
   ) {}
 
   @Query(() => OrderConnection)
@@ -32,5 +35,10 @@ export class OrdersResolver {
   @ResolveField(() => Customer)
   async customer(@Parent() parent: PrismaOrder) {
     return this.customerDataLoader.load(parent.customerId);
+  }
+
+  @ResolveField(() => Inventory)
+  async inventory(@Parent() parent: PrismaOrder) {
+    return this.inventoryDataLoader.load(parent.inventoryId);
   }
 }
