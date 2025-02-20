@@ -9,6 +9,7 @@ import { CustomersResolver } from './graphql/customers/customers.resolver';
 import { CustomerDataLoaderService } from './graphql/orders/customer-data-loader/customer-data-loader.service';
 import { InventoriesResolver } from './graphql/inventories/inventories.resolver';
 import { InventoryDataLoaderService } from './graphql/orders/inventory-data-loader/inventory-data-loader.service';
+import { ComplexityPlugin } from './plugin/complexity-plugin/complexity-plugin';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { InventoryDataLoaderService } from './graphql/orders/inventory-data-load
     CustomerDataLoaderService,
     InventoriesResolver,
     InventoryDataLoaderService,
+    ComplexityPlugin,
   ],
 })
 export class AppModule {}
