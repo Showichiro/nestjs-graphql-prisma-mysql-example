@@ -11,12 +11,13 @@ import { InventoriesResolver } from './graphql/inventories/inventories.resolver'
 import { InventoryDataLoaderService } from './graphql/orders/inventory-data-loader/inventory-data-loader.service';
 import { ComplexityPlugin } from './plugin/complexity-plugin/complexity-plugin';
 import { OrderDataLoaderService } from './graphql/customers/order-data-loader/order-data-loader.service';
+import { join } from 'path';
 
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: true,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
   ],
   controllers: [AppController],
