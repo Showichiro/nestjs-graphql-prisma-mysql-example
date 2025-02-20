@@ -6,13 +6,15 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable({ scope: Scope.REQUEST })
 export class CustomerDataLoaderService extends BaseDataLoader<
   number,
-  Customer
+  Omit<Customer, 'orders'>
 > {
   constructor(private prisma: PrismaService) {
     super();
   }
 
-  protected async batchLoad(keys: number[]): Promise<(Customer | Error)[]> {
+  protected async batchLoad(
+    keys: number[],
+  ): Promise<(Omit<Customer, 'orders'> | Error)[]> {
     const customers = await this.prisma.customer.findMany({
       where: { id: { in: keys } },
     });

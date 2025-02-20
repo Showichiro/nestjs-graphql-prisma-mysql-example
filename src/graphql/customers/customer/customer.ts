@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Customer as PrismaCustomer } from '@prisma/client';
+import { Order } from 'src/graphql/orders/order/order';
 
 @ObjectType()
 export class Customer implements PrismaCustomer {
@@ -13,4 +14,6 @@ export class Customer implements PrismaCustomer {
   createdAt: Date;
   @Field(() => Date, { nullable: false })
   updatedAt: Date;
+  @Field(() => [Order])
+  orders: Array<Order>;
 }
